@@ -32,7 +32,6 @@ public class PlayerMovement : MonoBehaviour
         {
             if (InventoryManager.Instance.canClose == true)
             {
-                InventoryManager.Instance.UnselectedItems();
                 inventoryIsActive = !inventoryIsActive;
                 InventoryOpenOrClosed?.Invoke();
             }

@@ -8294,6 +8294,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 829840805}
+  - component: {fileID: 829840806}
   m_Layer: 5
   m_Name: WeaponsBox
   m_TagString: Untagged
@@ -8326,6 +8327,30 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00036938, y: -0.000071675}
   m_SizeDelta: {x: 49.365, y: 48.351}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &829840806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 829840804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 02f385095aa5efc4a81a5737b0c36a6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WeaponDescriptionUI
+  nameTxt: {fileID: 1325795241}
+  rareLine: {fileID: 1577697375}
+  rareTxt: {fileID: 502244975}
+  damageTxt: {fileID: 1330121859}
+  iconAttackUI: {fileID: 126801762}
+  attackNameTxt: {fileID: 1083826445}
+  descriptionTxt: {fileID: 1624833664}
+  attackDescriptionTxt: {fileID: 356299860}
+  activateButton: {fileID: 756409076}
+  elementTxt: {fileID: 912513966}
+  elementImage: {fileID: 78176829}
+  library: {fileID: 11400000, guid: 6b041dc9d80719d4ab76f7ec15b59108, type: 2}
 --- !u!1 &840902870
 GameObject:
   m_ObjectHideFlags: 0
@@ -11420,6 +11445,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1190441115}
+  - component: {fileID: 1190441116}
   m_Layer: 5
   m_Name: ArmorBox
   m_TagString: Untagged
@@ -11452,6 +11478,32 @@ RectTransform:
   m_AnchoredPosition: {x: 0.00021839, y: 0.00024128}
   m_SizeDelta: {x: 49.365, y: 48.352}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1190441116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1190441114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fadff373f9433b479321abb51f46031, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ArmorDescriptionUI
+  nameTxt: {fileID: 1834553058}
+  rareLine: {fileID: 233201770}
+  rareTxt: {fileID: 2114223420}
+  descriptionTxt: {fileID: 511689761}
+  protectionTxt: {fileID: 1497712313}
+  manaTxt: {fileID: 1982227433}
+  hpTxt: {fileID: 422030114}
+  gemDmgTxt: {fileID: 976874527}
+  caneDmgTxt: {fileID: 466917799}
+  activateButton: {fileID: 1743913186}
+  hpTablo: {fileID: 235055849}
+  manaTablo: {fileID: 2087720502}
+  caneDmgTablo: {fileID: 766607361}
+  gemDmgTablo: {fileID: 1463177352}
 --- !u!1001 &1203767889
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17209,39 +17261,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inventoryManager: {fileID: 1396057459}
   coverImage: {fileID: 1451922451}
-  weaponsBox: {fileID: 829840804}
-  armorBox: {fileID: 1190441114}
-  weaponNameTXT: {fileID: 1325795241}
-  weaponRareLine: {fileID: 1577697375}
-  weaponRareTXT: {fileID: 502244975}
-  weaponDamageTXT: {fileID: 1330121859}
-  weaponIconAttackUI: {fileID: 1061950347}
-  weaponNameAttackTXT: {fileID: 1083826445}
-  weaponDescripTXT: {fileID: 1624833664}
-  weaponAttackDescriptionTXT: {fileID: 356299860}
-  weaponButtonActivate: {fileID: 756409076}
-  weaponElemetTXT: {fileID: 912513966}
-  weaponElementImage: {fileID: 78176829}
-  weaponElementSprites:
-  - {fileID: 21300000, guid: fa2cd36e1c77b1a449912ce69d955b98, type: 3}
-  - {fileID: 21300000, guid: cd95d3d1395d3134c92f36f7eeccee35, type: 3}
-  - {fileID: 21300000, guid: 552a4eb6bb6c0ea47914fd30fabfd364, type: 3}
-  - {fileID: 21300000, guid: b5a09f77f05873c4ca3f62997d352925, type: 3}
-  - {fileID: 21300000, guid: faac33c9a7b6b2045b5f058006bdcdca, type: 3}
-  armorNameTXT: {fileID: 1834553058}
-  armorRareLine: {fileID: 233201770}
-  armorRareTXT: {fileID: 2114223420}
-  armorDescripTXT: {fileID: 511689761}
-  additionalArmorTXT: {fileID: 1497712313}
-  additionalManaTXT: {fileID: 1982227433}
-  additionalHpTXT: {fileID: 422030114}
-  additionalGemDMGTXT: {fileID: 976874527}
-  additionalCaneDMGTXT: {fileID: 466917799}
-  armorButtonActivate: {fileID: 1743913186}
-  HpTablo: {fileID: 235055849}
-  ManaTablo: {fileID: 2087720502}
-  DMGCaneTablo: {fileID: 766607361}
-  DMGGemTablo: {fileID: 1463177352}
+  weaponUI: {fileID: 829840806}
+  armorUI: {fileID: 1190441116}
 --- !u!1001 &1852175885
 PrefabInstance:
   m_ObjectHideFlags: 0

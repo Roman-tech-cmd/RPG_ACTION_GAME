@@ -26,7 +26,6 @@ public class DragebleItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public void SelectItem()
     {
-        InventoryManager.Instance.UnselectedItems();
         isSelected = !isSelected;
         InventoryManager.Instance.ItemIsSelected(gameObject);
     }

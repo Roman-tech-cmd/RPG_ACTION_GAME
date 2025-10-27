@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class InventoryManager : MonoBehaviour
 {
-
-
-    //github test 2
     [SerializeField] private bool isOpen;
 
     public LabelSystem LabelSystem;
@@ -79,19 +76,6 @@ public class InventoryManager : MonoBehaviour
     {
         selectedItem = item;
     }
-
-    public void UnselectedItems()
-    {
-        /*foreach (GameObject g in gemsItemInventory)
-        {
-            if (g != null)
-            {
-                DragebleItem item = g.GetComponent<DragebleItem>();
-                item.isSelected = false;
-            }
-        }*/
-    }
-
     public void OpenInventory()
     {
         isOpen = !isOpen;
