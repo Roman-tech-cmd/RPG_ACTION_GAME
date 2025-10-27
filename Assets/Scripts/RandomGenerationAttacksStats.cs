@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class RandomGenerationAttacksStats : MonoBehaviour
 {
     public static RandomGenerationAttacksStats Instance;
-    //[SerializeField] private DescriptionSystem descriptionSystem;
     [SerializeField] private int lvlPlayer;
     private float multipLVLPlayer;
     private int lvlItem;
@@ -22,7 +21,6 @@ public class RandomGenerationAttacksStats : MonoBehaviour
 
     private void Awake()
     {
-        //CountingItems();
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -32,12 +30,11 @@ public class RandomGenerationAttacksStats : MonoBehaviour
             Instance = this;
         }
         DontDestroyOnLoad(Instance);
-        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
     {
-        buttonActivate.onClick.AddListener(OnClickButtonActivate);
+        buttonActivate.onClick.AddListener(ActivatingAnItem);
     }
     void Update()
     {
@@ -50,7 +47,7 @@ public class RandomGenerationAttacksStats : MonoBehaviour
             }
             else
             {
-                buttonActivate.GetComponentInChildren<TextMeshProUGUI>().text = "Активированно";
+                buttonActivate.GetComponentInChildren<TextMeshProUGUI>().text = "Активировано";
                 buttonActivate.interactable = false;
             }
         }
@@ -81,10 +78,12 @@ public class RandomGenerationAttacksStats : MonoBehaviour
         rareItem = item.GetComponent<LootItem>().RareItem;
 
         GenerateMultiplayers();
+
         summaryDamage = baseDamage * multipRare + lvlPlayer * multipLVLPlayer + (multipRare * (1 + Random.Range(0.1f, 0.9f)));
         BaseItem itemType = item.GetComponent<BaseItem>();
-        StaticElementClass.Element randomElement = (StaticElementClass.Element)Random.Range(1, 6);
-        itemType.Element = randomElement;
+
+        GenerateRandomElement(itemType);
+
         if (item.GetComponent<Gem>()) itemType.AttackItem = RandomAttack(AttaksGems);
         if (item.GetComponent<Cane>()) itemType.AttackItem = RandomAttack(AttaksCanes);
 
@@ -94,7 +93,7 @@ public class RandomGenerationAttacksStats : MonoBehaviour
             itemType.IsActive = true;
         }
     }
-    public void OnClickButtonActivate()
+    public void ActivatingAnItem()
     {
         if (InventoryManager.Instance.SelectedItem?.GetComponent<BaseItem>().IsActive == false)
         {
@@ -109,5 +108,11 @@ public class RandomGenerationAttacksStats : MonoBehaviour
         itemTo.AttackItem = itemFrom.AttackItem;
         itemTo.Element = itemFrom.Element;
         return itemTo;
+    }
+
+    public void GenerateRandomElement(BaseItem itemType)
+    {
+        StaticItemCharacteristicClass.Element randomElement = (StaticItemCharacteristicClass.Element)Random.Range(1, 6);
+        itemType.Element = randomElement;
     }
 }

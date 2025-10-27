@@ -39,7 +39,6 @@ public class RandomGenerationArmorStats : MonoBehaviour
 
     private void Awake()
     {
-        //CountingItems();
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -49,7 +48,6 @@ public class RandomGenerationArmorStats : MonoBehaviour
             Instance = this;
         }
         DontDestroyOnLoad(Instance);
-        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
     void Start()
