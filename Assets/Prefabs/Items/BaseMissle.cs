@@ -2,7 +2,7 @@ using UnityEngine;
 
 public abstract class BaseMissle : MonoBehaviour
 {
-    protected StaticElementClass.Element typeMissle;
+    protected StaticItemCharacteristicClass.Element typeMissle;
     protected float speed;
     protected float lifeTime;
     protected IEnemyDebaf enemyDebaf;
@@ -39,7 +39,7 @@ public abstract class BaseMissle : MonoBehaviour
     {
         lifeTime = lifeTimeMissle;
     }
-    public virtual void GetElement(StaticElementClass.Element element)
+    public virtual void GetElement(StaticItemCharacteristicClass.Element element)
     {
         typeMissle = element;
     }

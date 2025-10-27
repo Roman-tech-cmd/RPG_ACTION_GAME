@@ -42,7 +42,7 @@ public abstract class BaseEnemy : MonoBehaviour
         Debug.Log(nameEnemy + " наносит " + damageEnemy + " урона.");
     }
 
-    public virtual void TakeDamage(float playerDamage, StaticElementClass.Element element)
+    public virtual void TakeDamage(float playerDamage, StaticItemCharacteristicClass.Element element)
     {
         if (health > 0)
         {
@@ -55,31 +55,31 @@ public abstract class BaseEnemy : MonoBehaviour
         }
         switch (element)
         {
-            case StaticElementClass.Element.None:
+            case StaticItemCharacteristicClass.Element.None:
                 consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и Нужно активировать предмет");
                 NoneEffect();
                 break;
-            case StaticElementClass.Element.Fire:
+            case StaticItemCharacteristicClass.Element.Fire:
                 consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
                 EnemyBurning();
                 break;
 
-            case StaticElementClass.Element.Frost:
+            case StaticItemCharacteristicClass.Element.Frost:
                 consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и заморожен.");
                 EnemyFreezing();
                 break;
 
-            case StaticElementClass.Element.Wind:
+            case StaticItemCharacteristicClass.Element.Wind:
                 consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и кровоточит.");
                 EnemyBleeding();
                 break;
 
-            case StaticElementClass.Element.Water:
+            case StaticItemCharacteristicClass.Element.Water:
                 consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и потерял немного брони.");
                 EnemyReducingProtection();
                 break;
 
-            case StaticElementClass.Element.Earth:
+            case StaticItemCharacteristicClass.Element.Earth:
                 consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
                 EnemyDamageWithDelay();
                 break;

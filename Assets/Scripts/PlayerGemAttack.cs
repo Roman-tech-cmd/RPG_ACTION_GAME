@@ -121,9 +121,9 @@ public class PlayerGemAttack : MonoBehaviour
             return;
         }
 
-        _cachedBaseAttack.GetRareItem((BaseAttack.Rare)currentItem.RareItem);
-        _cachedBaseAttack.GetDamage(currentItem.Damage);
-        _cachedBaseAttack.GetElement(currentItem.Element);
+        _cachedBaseAttack.RareItem = currentItem.RareItem;
+        _cachedBaseAttack.Damage = currentItem.Damage;
+        _cachedBaseAttack.AttackElement = currentItem.Element;
         spawnedItemAttack.transform.SetParent(hand.transform);
         _cachedBaseAttack.CreateTrajectory();
 
