@@ -4,7 +4,6 @@ using UnityEngine.UI;
 
 public class DescriptionSystem : MonoBehaviour
 {
-    public enum Rare { common, unusual, rare, epic, legendary }
     public enum typeItem { Weapons, Armor }
     [SerializeField] private InventoryManager inventoryManager;
     [SerializeField] private GameObject coverImage;
@@ -16,7 +15,7 @@ public class DescriptionSystem : MonoBehaviour
     private string weaponNameItem;
     private Color weaponColorRare;
     [SerializeField] private Image weaponRareLine;
-    private Rare weaponRare;
+    private StaticItemCharacteristicClass.Rare weaponRare;
     private string weaponRareText;
     [SerializeField] private TextMeshProUGUI weaponRareTXT;
     [SerializeField] private TextMeshProUGUI weaponDamageTXT;
@@ -43,7 +42,7 @@ public class DescriptionSystem : MonoBehaviour
     private string armorNameItem;
     private Color armorColorRare;
     [SerializeField] private Image armorRareLine;
-    private Rare armorRare;
+    private StaticItemCharacteristicClass.Rare armorRare;
     private string armorRareText;
     [SerializeField] private TextMeshProUGUI armorRareTXT;
     private string armorDescriptionItem;
@@ -84,20 +83,20 @@ public class DescriptionSystem : MonoBehaviour
 
         weaponRareText = weaponRare switch
         {
-            Rare.common => "Обычный",
-            Rare.unusual => "Необычный",
-            Rare.rare => "Редкий",
-            Rare.epic => "Эпический",
-            Rare.legendary => "Легенадрный",
+            StaticItemCharacteristicClass.Rare.common => "Обычный",
+            StaticItemCharacteristicClass.Rare.unusual => "Необычный",
+            StaticItemCharacteristicClass.Rare.rare => "Редкий",
+            StaticItemCharacteristicClass.Rare.epic => "Эпический",
+            StaticItemCharacteristicClass.Rare.legendary => "Легенадрный",
             _ => ""
         };
         armorRareText = armorRare switch
         {
-            Rare.common => "Обычный",
-            Rare.unusual => "Необычный",
-            Rare.rare => "Редкий",
-            Rare.epic => "Эпический",
-            Rare.legendary => "Легенадрный",
+            StaticItemCharacteristicClass.Rare.common => "Обычный",
+            StaticItemCharacteristicClass.Rare.unusual => "Необычный",
+            StaticItemCharacteristicClass.Rare.rare => "Редкий",
+            StaticItemCharacteristicClass.Rare.epic => "Эпический",
+            StaticItemCharacteristicClass.Rare.legendary => "Легенадрный",
             _ => ""
         };
 
@@ -142,7 +141,7 @@ public class DescriptionSystem : MonoBehaviour
 
         weaponElement = item.Element;
 
-        weaponRare = (Rare)item.RareItem;
+        weaponRare = item.RareItem;
         weaponRareTXT.text = weaponRareText;
 
         weaponColorRare = item.RareColor;
@@ -193,7 +192,7 @@ public class DescriptionSystem : MonoBehaviour
         armorDescriptionItem = item.Description;
         armorDescripTXT.text = armorDescriptionItem;
 
-        armorRare = (Rare)item.RareItem;
+        armorRare = item.RareItem;
         armorRareTXT.text = armorRareText;
 
         armorColorRare = item.RareColor;
