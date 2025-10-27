@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3353d926e1788004c88625bf67b11cc6, type: 3}
+  m_Name: Goblin
+  m_EditorClassIdentifier: 
+  Name: "\u041A\u0440\u0443\u0442\u043E\u0439 \u0433\u043E\u0431\u043B\u0438\u043D"
+  Damage: 15
+  MaxHealth: 80
+  ItemDrop:
+  - {fileID: -3236220387907203556, guid: fd61421f2d0d0c741baac0495f7c2bb5, type: 3}
+  - {fileID: -3236220387907203556, guid: 6776c88138ddbed42b82e89e35a77986, type: 3}
+  - {fileID: -3236220387907203556, guid: 23adefa5e69f17547af5c9ffdef930c8, type: 3}
+  - {fileID: 8523841504529978774, guid: 3e66a1deedf9a434db9b67b3f943004a, type: 3}
+  - {fileID: 8523841504529978774, guid: 8a81c9c204fc7be4592f74167cad9876, type: 3}
