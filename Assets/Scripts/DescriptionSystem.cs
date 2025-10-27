@@ -31,7 +31,7 @@ public class DescriptionSystem : MonoBehaviour
     [SerializeField] private TextMeshProUGUI weaponAttackDescriptionTXT;
     [SerializeField] private Button weaponButtonActivate;
     private string weaponElemetItem;
-    private StaticElementClass.Element weaponElement;
+    private StaticItemCharacteristicClass.Element weaponElement;
     [SerializeField] private TextMeshProUGUI weaponElemetTXT;
     [SerializeField] private Image weaponElementImage;
     [SerializeField] private Sprite[] weaponElementSprites;
@@ -155,10 +155,10 @@ public class DescriptionSystem : MonoBehaviour
         if (item.AttackItem != null)
         {
 
-            weaponNameAttack = item.AttackItem.GetComponent<BaseAttack>().GetNameAttack();
+            weaponNameAttack = item.AttackItem.GetComponent<BaseAttack>().NameAttack;
             weaponNameAttackTXT.text = weaponNameAttack;
 
-            weaponAttackDescription = item.AttackItem.GetComponent<BaseAttack>().GetDescriptionAttack();
+            weaponAttackDescription = item.AttackItem.GetComponent<BaseAttack>().DescriptionAttack;
             weaponAttackDescriptionTXT.text = weaponAttackDescription;
         }
         else
@@ -170,11 +170,11 @@ public class DescriptionSystem : MonoBehaviour
 
         weaponElementImage.sprite = weaponElement switch
         {
-            StaticElementClass.Element.Fire => weaponElementSprites[0],
-            StaticElementClass.Element.Frost => weaponElementSprites[1],
-            StaticElementClass.Element.Wind => weaponElementSprites[2],
-            StaticElementClass.Element.Earth => weaponElementSprites[3],
-            StaticElementClass.Element.Water => weaponElementSprites[4],
+            StaticItemCharacteristicClass.Element.Fire => weaponElementSprites[0],
+            StaticItemCharacteristicClass.Element.Frost => weaponElementSprites[1],
+            StaticItemCharacteristicClass.Element.Wind => weaponElementSprites[2],
+            StaticItemCharacteristicClass.Element.Earth => weaponElementSprites[3],
+            StaticItemCharacteristicClass.Element.Water => weaponElementSprites[4],
             _ => null
         };
     }

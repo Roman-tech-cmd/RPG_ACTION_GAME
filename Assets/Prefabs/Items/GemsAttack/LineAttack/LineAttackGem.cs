@@ -34,9 +34,4 @@ public class LineAttackGem : BaseAttack
     {
         RotateToMouse();
     }
-
-    public override Sprite GetIcon()
-    {
-        return base.GetIcon();
-    }
 }

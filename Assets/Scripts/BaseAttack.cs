@@ -15,7 +15,11 @@ public abstract class BaseAttack : MonoBehaviour
 
     [Header("Параметры атаки")]
     protected float damage;
-    public float Damage => damage;
+    public float Damage
+    {
+        get => damage;
+        set => damage = value;
+    }
 
     [SerializeField] private float baseCooldown;
 
@@ -48,7 +52,7 @@ public abstract class BaseAttack : MonoBehaviour
 
     [SerializeField] protected float speedMissle;
     [SerializeField] protected float lifeTimeMissle;
-    
+
     public virtual GameObject GetPrefab()
     {
         return gameObject;
@@ -69,5 +73,5 @@ public abstract class BaseAttack : MonoBehaviour
 
     public abstract void CreateTrajectory();
 
-    public abstract void Attack();
+    public abstract void Attack();    
 }

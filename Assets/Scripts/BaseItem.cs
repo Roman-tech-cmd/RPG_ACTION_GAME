@@ -53,8 +53,8 @@ public abstract class BaseItem : MonoBehaviour
         set { _damage = value; }
     }
 
-    protected StaticElementClass.Element _element;
-    public StaticElementClass.Element Element
+    protected StaticItemCharacteristicClass.Element _element;
+    public StaticItemCharacteristicClass.Element Element
     {
         get { return _element; }
         set { _element = value; }
@@ -67,10 +67,8 @@ public abstract class BaseItem : MonoBehaviour
         set { elementText = value; }
     }
 
-
-    public enum Rare { common, unusual, rare, epic, legendary }
-    protected Rare rareItem;
-    public Rare RareItem
+    protected StaticItemCharacteristicClass.Rare rareItem;
+    public StaticItemCharacteristicClass.Rare RareItem
     {
         get { return rareItem; }
         set { rareItem = value; }
@@ -138,29 +136,29 @@ public abstract class BaseItem : MonoBehaviour
     {
         _name = dataItem.ItemName;
         _description = dataItem.ItemDiscription;
-        rareItem = (Rare)dataItem.rareItem;
+        rareItem = (StaticItemCharacteristicClass.Rare)dataItem.rareItem;
         GetComponent<LootItem>().RareItem = (LootItem.Rare)rareItem;
     }
     void Update()
     {
         switch (rareItem)
         {
-            case Rare.common:
+            case StaticItemCharacteristicClass.Rare.common:
                 ColorUtility.TryParseHtmlString("#ADADAD", out rareColor);
                 break;
-            case Rare.unusual:
+            case StaticItemCharacteristicClass.Rare.unusual:
                 ColorUtility.TryParseHtmlString("#4E95FD", out rareColor);
                 break;
 
-            case Rare.rare:
+            case StaticItemCharacteristicClass.Rare.rare:
                 ColorUtility.TryParseHtmlString("#55FD4E", out rareColor);
                 break;
 
-            case Rare.epic:
+            case StaticItemCharacteristicClass.Rare.epic:
                 ColorUtility.TryParseHtmlString("#EA4EFD", out rareColor);
                 break;
 
-            case Rare.legendary:
+            case StaticItemCharacteristicClass.Rare.legendary:
                 ColorUtility.TryParseHtmlString("#FDDF4E", out rareColor);
                 break;
             default:
@@ -174,63 +172,17 @@ public abstract class BaseItem : MonoBehaviour
         elementText = TranslateElement(_element);
     }
 
-    public string TranslateElement(StaticElementClass.Element elem) => elem switch
+    public string TranslateElement(StaticItemCharacteristicClass.Element elem) => elem switch
     {
-        StaticElementClass.Element.Earth => "Земля",
-        StaticElementClass.Element.Fire => "Огонь",
-        StaticElementClass.Element.Frost => "Мороз",
-        StaticElementClass.Element.Water => "Вода",
-        StaticElementClass.Element.Wind => "Ветер",
+        StaticItemCharacteristicClass.Element.Earth => "Земля",
+        StaticItemCharacteristicClass.Element.Fire => "Огонь",
+        StaticItemCharacteristicClass.Element.Frost => "Мороз",
+        StaticItemCharacteristicClass.Element.Water => "Вода",
+        StaticItemCharacteristicClass.Element.Wind => "Ветер",
         _ => ""
     };
 
     public abstract void AddItemToInventory(GameObject wolrdItem);
     public abstract void AddItemToList();
     public abstract bool CanPickUp();
-
-    //public string nameItem() => _name;
-    //public string descriptionItem() => _description;
-    //public float damageItem() => _damage;
-    //public string elementItem() => TranslateElement(_element);
-    //public float AddictionalHp() => addictionalHp;
-    //public float AddictionalMana() => addictionalMana;
-    //public float AddictionalProtection() => addictionalProtection;
-    //public float AddicitonalGemDMG() => addicitonalGemDMG;
-    //public float AddictionalCaneDMG() => addictionalCaneDMG;
-
-
-
-    /* public GameObject GetUiItem() => prefabUI;
-     public GameObject GetWorldItem() => prefabWorld;
-     public abstract bool CanPickUp();
-     public abstract void AddItemToInventory(GameObject worldItem);
-     public abstract void AddItemToList();
-     public bool ItemIsActive() => isActive;
-     public void SetActiveItem(bool active) => isActive = active;
-     public void SetDamage(float damage) => _damage = damage;
-     public void SetElement(StaticElementClass.Element element)
-     {
-         _element = element;
-         GetAttack()?.GetComponent<BaseAttack>().GetElement(_element);
-     }
-
-     public void SetAttack(GameObject attack)
-     {
-         attackItem = attack;
-         _icon = attackItem?.GetComponent<BaseAttack>()?.GetIcon();
-     }
-     public GameObject GetAttack() => attackItem;
-
-     IDescription.Rare IDescription.rareItem() => (IDescription.Rare)rareItem;
-
-     public Sprite GetIconItemAttack(bool yes)
-     {
-         if (yes) return _icon;
-         else return null;
-     }
-
-     public Color GetRareColor() => rareColor;
-     public Rare GetRare() => rareItem;*/
-
-
 }

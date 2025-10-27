@@ -20,7 +20,7 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
     }
 
 
-    public override void TakeDamage(float playerDamage, StaticElementClass.Element element)
+    public override void TakeDamage(float playerDamage, StaticItemCharacteristicClass.Element element)
     {
         if (Random.value > ((100 - changeRepel) / 100))
         {
