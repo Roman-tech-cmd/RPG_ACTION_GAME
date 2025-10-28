@@ -5,7 +5,7 @@ using UnityEngine.UI;
 public class DragebleItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [HideInInspector] public Transform parentAfterDrag;
-    public Image itemImage;
+    [SerializeField] private Image itemImage;
 
     public bool isSelected;
 
@@ -22,6 +22,11 @@ public class DragebleItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
     public TypeItemSlot TypeItem
     {
         get { return typeItem; }
+    }
+
+    private void Start()
+    {
+
     }
 
     public void SelectItem()

@@ -8,8 +8,10 @@ public abstract class BaseItem : MonoBehaviour
     {
         get { return _typeItem; }
     }
+    [Header("Данные предмета")]
     [SerializeField] protected DataItem dataItem;
-
+    [Space(10)]
+    [Header("Префабы")]
     [SerializeField] protected GameObject prefabWorld;
     public GameObject PrefabWorld
     {
