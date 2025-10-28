@@ -16,7 +16,7 @@ public class DescriptionSystem : MonoBehaviour
         }
 
         BaseItem item = inventoryManager.SelectedItem.GetComponent<BaseItem>();
-        if (item.TypeItem == BaseItem.typeItem.Weapons)
+        if (item.TypeItem == StaticItemCharacteristicClass.typeItem.Weapons)
         {
             armorUI.Hide();
             weaponUI.Show(item);

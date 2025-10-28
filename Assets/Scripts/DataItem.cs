@@ -4,7 +4,9 @@ using UnityEngine;
 public class DataItem : ScriptableObject
 {
     public StaticItemCharacteristicClass.Rare rareItem;
+    public StaticItemCharacteristicClass.typeItem ItemType;
     public string ItemName;
     public string ItemDiscription;
+    
 }
 

@@ -8343,7 +8343,7 @@ MonoBehaviour:
   rareLine: {fileID: 1577697375}
   rareTxt: {fileID: 502244975}
   damageTxt: {fileID: 1330121859}
-  iconAttackUI: {fileID: 126801762}
+  iconAttackUI: {fileID: 1061950347}
   attackNameTxt: {fileID: 1083826445}
   descriptionTxt: {fileID: 1624833664}
   attackDescriptionTxt: {fileID: 356299860}
@@ -13984,7 +13984,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.23738, y: -25.676}
+  m_AnchoredPosition: {x: 57.45, y: -28.324}
   m_SizeDelta: {x: 49.364, y: 48.351}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1451922453

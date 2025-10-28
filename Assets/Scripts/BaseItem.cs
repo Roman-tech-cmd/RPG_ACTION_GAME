@@ -3,9 +3,8 @@ using UnityEngine.UI;
 
 public abstract class BaseItem : MonoBehaviour
 {
-    public enum typeItem { Weapons, Armor }
-    [SerializeField] protected typeItem _typeItem;
-    public typeItem TypeItem
+    protected StaticItemCharacteristicClass.typeItem _typeItem;
+    public StaticItemCharacteristicClass.typeItem TypeItem
     {
         get { return _typeItem; }
     }
@@ -43,7 +42,10 @@ public abstract class BaseItem : MonoBehaviour
     public GameObject AttackItem
     {
         get { return attackItem; }
-        set { attackItem = value; }
+        set 
+        { 
+            attackItem = value;
+        }
     }
 
     protected float _damage;
@@ -101,7 +103,7 @@ public abstract class BaseItem : MonoBehaviour
         set { additionalHp = value; }
     }
 
-    [SerializeField] protected float additionalProtection;
+    protected float additionalProtection;
     public float AdditionalProtection
     {
         get { return additionalProtection; }
@@ -136,7 +138,8 @@ public abstract class BaseItem : MonoBehaviour
     {
         _name = dataItem.ItemName;
         _description = dataItem.ItemDiscription;
-        rareItem = (StaticItemCharacteristicClass.Rare)dataItem.rareItem;
+        rareItem = dataItem.rareItem;
+        _typeItem = dataItem.ItemType;
         GetComponent<LootItem>().RareItem = (LootItem.Rare)rareItem;
     }
     void Update()
@@ -170,6 +173,11 @@ public abstract class BaseItem : MonoBehaviour
         }
 
         elementText = TranslateElement(_element);
+
+        if (attackItem!=null)
+        {
+            Icon = attackItem.GetComponent<BaseAttack>().IconAttack;
+        }
     }
 
     public string TranslateElement(StaticItemCharacteristicClass.Element elem) => elem switch
