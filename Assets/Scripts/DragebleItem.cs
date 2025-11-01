@@ -9,24 +9,15 @@ public class DragebleItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEnd
 
     public bool isSelected;
 
-    public enum TypeItemSlot
+    private StaticItemCharacteristicClass.CategoryItem categoryItem;
+    public StaticItemCharacteristicClass.CategoryItem CategoryItem
     {
-        None,
-        Gem,
-        Cane,
-        Mantle,
-        Belt
-    }
-    [SerializeField] private TypeItemSlot typeItem;
-
-    public TypeItemSlot TypeItem
-    {
-        get { return typeItem; }
+        get { return categoryItem; }
+        set { categoryItem = value; }
     }
 
     private void Start()
     {
-
     }
 
     public void SelectItem()

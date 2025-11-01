@@ -226,7 +226,8 @@ MonoBehaviour:
   parentAfterDrag: {fileID: 0}
   itemImage: {fileID: 4092932472638539053}
   isSelected: 0
-  typeItem: 1
+  dataItem: {fileID: 11400000, guid: c33588f13a58206428505005b3529d42, type: 2}
+  categoryItem: 0
 --- !u!114 &3194598634327100330
 MonoBehaviour:
   m_ObjectHideFlags: 0

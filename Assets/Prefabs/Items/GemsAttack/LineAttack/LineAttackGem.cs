@@ -11,6 +11,7 @@ public class LineAttackGem : BaseAttack
     public void GetPointSpawn(GameObject point)
     {
         hand = point;
+        
     }
 
     public override void Attack()

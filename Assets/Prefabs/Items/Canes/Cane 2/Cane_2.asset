@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5c376a807f4d843999673fc2ca13a3, type: 3}
   m_Name: Cane_2
   m_EditorClassIdentifier: 
-  rareItem: 2
+  RareItem: 0
+  ItemType: 0
+  CategoryItem: 2
   ItemName: "\u0412\u043D\u0443\u0448\u0438\u0442\u0435\u043B\u044C\u043D\u0430\u044F
     \u0442\u0440\u043E\u0441\u0442\u044C"
   ItemDiscription: "\u0425\u043E\u0447\u0435\u0442, \u0447\u0442\u043E\u0431\u044B
     \u0435\u0451 \u0432\u0437\u044F\u043B\u0438."
-  addHealth: 3
-  ItemAtack: {fileID: 508343510485727277, guid: dd9d1fe34cb491f468007f3a0807540d, type: 3}

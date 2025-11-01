@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5c376a807f4d843999673fc2ca13a3, type: 3}
   m_Name: Mantle_1
   m_EditorClassIdentifier: 
-  rareItem: 4
+  RareItem: 0
   ItemType: 1
+  CategoryItem: 3
   ItemName: "\u041D\u0430\u0447\u0430\u043B\u044C\u043D\u044B\u0439 \u0440\u0443\u0431\u0430\u0448\u0415\u041A"
   ItemDiscription: "\u0412 \u043D\u0451\u043C \u0442\u044B \u0441\u0435\u0431\u044F
     \u043D\u0435 \u0447\u0443\u0432\u0441\u0442\u0432\u0443\u0435\u0448\u044C \u0441\u0435\u0431\u044F

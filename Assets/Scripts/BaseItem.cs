@@ -8,6 +8,12 @@ public abstract class BaseItem : MonoBehaviour
     {
         get { return _typeItem; }
     }
+    protected StaticItemCharacteristicClass.CategoryItem categoryItem;
+    public StaticItemCharacteristicClass.CategoryItem CategoryItem
+    {
+        get { return categoryItem; }
+        set { categoryItem = value; }
+    }
     [Header("Данные предмета")]
     [SerializeField] protected DataItem dataItem;
     [Space(10)]
@@ -134,16 +140,27 @@ public abstract class BaseItem : MonoBehaviour
     }
 
 
-    private void Start() => InitializeItem();
+
+    private void Start()
+    {
+        InitializeItem();
+        if (GetComponent<DragebleItem>())
+        {
+            DragebleItem item = GetComponent<DragebleItem>();
+            item.CategoryItem = categoryItem;
+        }
+    }
 
     protected virtual void InitializeItem()
     {
         _name = dataItem.ItemName;
         _description = dataItem.ItemDiscription;
-        rareItem = dataItem.rareItem;
+        rareItem = dataItem.RareItem;
         _typeItem = dataItem.ItemType;
+        categoryItem = dataItem.CategoryItem;
         GetComponent<LootItem>().RareItem = (LootItem.Rare)rareItem;
     }
+
     void Update()
     {
         switch (rareItem)
