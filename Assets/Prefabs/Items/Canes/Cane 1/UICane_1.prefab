@@ -95,7 +95,8 @@ MonoBehaviour:
   parentAfterDrag: {fileID: 0}
   itemImage: {fileID: 3002010493933037766}
   isSelected: 0
-  typeItem: 2
+  dataItem: {fileID: 11400000, guid: c2c43c623eb157f4286f86487936ad64, type: 2}
+  categoryItem: 0
 --- !u!114 &1736128343971656180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,7 +180,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ad44535bc7d58469d3ca3f971d0af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changeDrop: 30
   prefabLoot: {fileID: 1574867408500156218, guid: 3e66a1deedf9a434db9b67b3f943004a, type: 3}
 --- !u!1 &1843302104835067624
 GameObject:

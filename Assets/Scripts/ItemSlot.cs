@@ -15,17 +15,9 @@ public class ItemSlot : MonoBehaviour, IDropHandler
         }
     }
 
-    public enum TypeItemSlot
-    {
-        None,
-        Gem,
-        Cane,
-        Mantia,
-        Belt
-    }
-    [SerializeField] private TypeItemSlot typeSlot;
+    [SerializeField] private StaticItemCharacteristicClass.CategoryItem typeSlot;
 
-    public TypeItemSlot TypeSlot
+    public StaticItemCharacteristicClass.CategoryItem TypeSlot
     {
         get { return typeSlot; }
     }
@@ -49,12 +41,12 @@ public class ItemSlot : MonoBehaviour, IDropHandler
             {
                 GameObject dropped = eventData.pointerDrag;
                 DragebleItem draggableItem = dropped.GetComponent<DragebleItem>();
-                if (typeSlot == TypeItemSlot.None)
+                if (typeSlot == StaticItemCharacteristicClass.CategoryItem.None)
                 {
                     Debug.Log("PoFIk");
                     draggableItem.parentAfterDrag = transform;
                 }
-                else if ((int)typeSlot == (int)draggableItem.TypeItem)
+                else if ((int)typeSlot == (int)draggableItem.CategoryItem)
                 {
                     Debug.Log("GOOD");
                     draggableItem.parentAfterDrag = transform;
@@ -73,13 +65,13 @@ public class ItemSlot : MonoBehaviour, IDropHandler
                 GameObject current = transform.GetChild(0).gameObject;
                 DragebleItem currentDraggable = current.GetComponent<DragebleItem>();
 
-                if (typeSlot == TypeItemSlot.None)
+                if (typeSlot == StaticItemCharacteristicClass.CategoryItem.None)
                 {
                     Debug.Log("PoFIk");
                     currentDraggable.transform.SetParent(draggableItem.parentAfterDrag);
                     draggableItem.parentAfterDrag = transform;
                 }
-                else if ((int)typeSlot == (int)draggableItem.TypeItem)
+                else if ((int)typeSlot == (int)draggableItem.CategoryItem)
                 {
                     Debug.Log("GOOD");
                     currentDraggable.transform.SetParent(draggableItem.parentAfterDrag);

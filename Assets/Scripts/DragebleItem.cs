@@ -5,23 +5,19 @@ using UnityEngine.UI;
 public class DragebleItem : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
     [HideInInspector] public Transform parentAfterDrag;
-    public Image itemImage;
+    [SerializeField] private Image itemImage;
 
     public bool isSelected;
 
-    public enum TypeItemSlot
+    private StaticItemCharacteristicClass.CategoryItem categoryItem;
+    public StaticItemCharacteristicClass.CategoryItem CategoryItem
     {
-        None,
-        Gem,
-        Cane,
-        Mantle,
-        Belt
+        get { return categoryItem; }
+        set { categoryItem = value; }
     }
-    [SerializeField] private TypeItemSlot typeItem;
 
-    public TypeItemSlot TypeItem
+    private void Start()
     {
-        get { return typeItem; }
     }
 
     public void SelectItem()

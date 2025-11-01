@@ -170,7 +170,8 @@ MonoBehaviour:
   parentAfterDrag: {fileID: 0}
   itemImage: {fileID: 4092932472638539053}
   isSelected: 0
-  typeItem: 1
+  dataItem: {fileID: 11400000, guid: aa9da22d10eca1047a200e2d758e4fa7, type: 2}
+  categoryItem: 0
 --- !u!114 &3194598634327100330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -254,3 +255,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8ad44535bc7d58469d3ca3f971d0af0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  prefabLoot: {fileID: 0}

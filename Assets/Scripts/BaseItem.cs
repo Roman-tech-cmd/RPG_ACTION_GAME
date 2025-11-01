@@ -3,14 +3,21 @@ using UnityEngine.UI;
 
 public abstract class BaseItem : MonoBehaviour
 {
-    public enum typeItem { Weapons, Armor }
-    [SerializeField] protected typeItem _typeItem;
-    public typeItem TypeItem
+    protected StaticItemCharacteristicClass.typeItem _typeItem;
+    public StaticItemCharacteristicClass.typeItem TypeItem
     {
         get { return _typeItem; }
     }
+    protected StaticItemCharacteristicClass.CategoryItem categoryItem;
+    public StaticItemCharacteristicClass.CategoryItem CategoryItem
+    {
+        get { return categoryItem; }
+        set { categoryItem = value; }
+    }
+    [Header("Данные предмета")]
     [SerializeField] protected DataItem dataItem;
-
+    [Space(10)]
+    [Header("Префабы")]
     [SerializeField] protected GameObject prefabWorld;
     public GameObject PrefabWorld
     {
@@ -43,7 +50,10 @@ public abstract class BaseItem : MonoBehaviour
     public GameObject AttackItem
     {
         get { return attackItem; }
-        set { attackItem = value; }
+        set 
+        { 
+            attackItem = value;
+        }
     }
 
     protected float _damage;
@@ -101,7 +111,7 @@ public abstract class BaseItem : MonoBehaviour
         set { additionalHp = value; }
     }
 
-    [SerializeField] protected float additionalProtection;
+    protected float additionalProtection;
     public float AdditionalProtection
     {
         get { return additionalProtection; }
@@ -130,15 +140,27 @@ public abstract class BaseItem : MonoBehaviour
     }
 
 
-    private void Start() => InitializeItem();
+
+    private void Start()
+    {
+        InitializeItem();
+        if (GetComponent<DragebleItem>())
+        {
+            DragebleItem item = GetComponent<DragebleItem>();
+            item.CategoryItem = categoryItem;
+        }
+    }
 
     protected virtual void InitializeItem()
     {
         _name = dataItem.ItemName;
         _description = dataItem.ItemDiscription;
-        rareItem = (StaticItemCharacteristicClass.Rare)dataItem.rareItem;
+        rareItem = dataItem.RareItem;
+        _typeItem = dataItem.ItemType;
+        categoryItem = dataItem.CategoryItem;
         GetComponent<LootItem>().RareItem = (LootItem.Rare)rareItem;
     }
+
     void Update()
     {
         switch (rareItem)
@@ -170,6 +192,11 @@ public abstract class BaseItem : MonoBehaviour
         }
 
         elementText = TranslateElement(_element);
+
+        if (attackItem!=null)
+        {
+            Icon = attackItem.GetComponent<BaseAttack>().IconAttack;
+        }
     }
 
     public string TranslateElement(StaticItemCharacteristicClass.Element elem) => elem switch

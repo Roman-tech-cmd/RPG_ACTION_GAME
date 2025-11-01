@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5c376a807f4d843999673fc2ca13a3, type: 3}
   m_Name: Gem_2
   m_EditorClassIdentifier: 
-  rareItem: 1
+  RareItem: 0
+  ItemType: 0
+  CategoryItem: 1
   ItemName: "\u041E\u0431\u044B\u0447\u043D\u044B\u0439 \u0413\u0435\u043C"
   ItemDiscription: "\u041E\u043D \u043D\u0438\u0447\u0435\u043C \u043D\u0435 \u0432\u044B\u0434\u0435\u043B\u044F\u0435\u0442\u044C\u0441\u044F."
-  addHealth: 2

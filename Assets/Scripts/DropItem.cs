@@ -23,7 +23,7 @@ public class DropItem : MonoBehaviour
         if (!Physics2D.OverlapCircle(dropPosition, worldItem.GetComponent<Collider2D>().bounds.extents.x, layerBarrier))
         {
             GameObject droppedItem = Instantiate(worldItem, dropPosition, Quaternion.identity);
-            if (droppedItem.GetComponent<BaseItem>().TypeItem == BaseItem.typeItem.Weapons)
+            if (droppedItem.GetComponent<BaseItem>().TypeItem == StaticItemCharacteristicClass.typeItem.Weapons)
             {
                 RandomGenerationAttacksStats.Instance.TransferStats(UIitem.GetComponent<BaseItem>(), droppedItem.GetComponent<BaseItem>());
             }
