@@ -7,6 +7,10 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
     private bool canTakeDebaff = true;
     [SerializeField, Range(0, 100)] private float changeRepel;
 
+    [SerializeField] private CircleCollider2D areaDetecting;
+    [SerializeField] private CircleCollider2D areaAttack;
+
+
     private bool isDie;
 
     public void Awake()
@@ -17,6 +21,7 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
     void Update()
     {
         if (isDie) canTakeDebaff = false;
+        Move();
     }
 
 
@@ -79,6 +84,21 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
         if (canTakeDebaff && !isDie)
         {
             base.EnemyDamageWithDelay();
+        }
+    }
+
+
+    public override void Move()
+    {
+        base.Move();
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("ZoneDetection")) 
+        { 
+
         }
     }
 
