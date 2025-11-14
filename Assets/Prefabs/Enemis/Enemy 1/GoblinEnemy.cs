@@ -1,8 +1,8 @@
+using System;
 using UnityEngine;
 
 public class GoblinEnemy : BaseEnemy, IEnemyDebaf
 {
-
     [SerializeField] private EnemyData gobliData;
     private bool canTakeDebaff = true;
     [SerializeField, Range(0, 100)] private float changeRepel;
@@ -18,16 +18,34 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
         base.Inicialization(gobliData);
     }
 
+    private void Start()
+    {
+        EnemyTriggers.PlayerDetected += OnPlayerDetected;
+    }
+
     void Update()
     {
         if (isDie) canTakeDebaff = false;
         Move();
     }
 
+    public void OnPlayerDetected(bool isDetected)
+    {
+        if (isDetected)
+        {
+            print("Я БЕГУ ЗА ТОБОЙ!");
+        }
+        else 
+        {
+            print("Я ПЕРЕДУМАЛ!");
+        }
+    }
+
+
 
     public override void TakeDamage(float playerDamage, StaticItemCharacteristicClass.Element element)
     {
-        if (Random.value > ((100 - changeRepel) / 100))
+        if (UnityEngine.Random.value > ((100 - changeRepel) / 100))
         {
             Debug.Log(gobliData.Name + " отразил атаку.");
             canTakeDebaff = false;
@@ -93,13 +111,4 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
         base.Move();
 
     }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("ZoneDetection")) 
-        { 
-
-        }
-    }
-
 }

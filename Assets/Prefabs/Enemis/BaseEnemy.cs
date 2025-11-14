@@ -1,5 +1,6 @@
-using UnityEngine;
+using System;
 using TMPro;
+using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public abstract class BaseEnemy : MonoBehaviour
     }
     public virtual void Move()
     {
-        Debug.Log(nameEnemy + " ходит.");
+        //Debug.Log(nameEnemy + " ходит.");
     }
 
     public virtual void EnemyAttack()
@@ -121,7 +122,7 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         foreach (LootItem loot in itemDrop)
         {
-            float randomValue = Random.Range(0, 100f);
+            float randomValue = UnityEngine.Random.Range(0, 100f);
             if (randomValue <= loot.ChangeDrop)
             {
                 Instantiate(loot.PrefabLoot, transform.position, Quaternion.identity);
