@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: "\u041E\u0431\u044B\u0447\u043D\u044B\u0439 \u0433\u043E\u0431\u043B\u0438\u043D"
   Damage: 10
   MaxHealth: 70
+  MoveSpeed: 2
   ItemDrop:
   - {fileID: -7145498234628675550, guid: 78be2735bd40c0a4482f83083b208a13, type: 3}
   - {fileID: -3236220387907203556, guid: 6776c88138ddbed42b82e89e35a77986, type: 3}

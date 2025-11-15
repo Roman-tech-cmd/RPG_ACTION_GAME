@@ -4,13 +4,14 @@ using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
-    private string nameEnemy;
-    private int damageEnemy;
-    private int MaxHealth;
-    private float health;
-    private LootItem[] itemDrop;
+    protected string nameEnemy;
+    protected int damageEnemy;
+    protected int MaxHealth;
+    protected float health;
+    protected LootItem[] itemDrop;
+    [SerializeField] protected float moveSpeed;
 
-    private TextMeshProUGUI consoleTXT;
+    protected TextMeshProUGUI consoleTXT;
 
     public virtual void Inicialization(EnemyData data)
     {
@@ -19,6 +20,7 @@ public abstract class BaseEnemy : MonoBehaviour
         nameEnemy = data.Name;
         damageEnemy = data.Damage;
         itemDrop = data.ItemDrop;
+        moveSpeed = data.MoveSpeed;
     }
 
     void Start()

@@ -6,6 +6,7 @@ public class EnemyData : ScriptableObject
     public string Name;
     public int Damage;
     public int MaxHealth;
+    public int MoveSpeed;
 
     public LootItem[] ItemDrop;
 }

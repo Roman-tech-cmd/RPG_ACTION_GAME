@@ -7,8 +7,10 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
     private bool canTakeDebaff = true;
     [SerializeField, Range(0, 100)] private float changeRepel;
 
-    [SerializeField] private CircleCollider2D areaDetecting;
-    [SerializeField] private CircleCollider2D areaAttack;
+    //[SerializeField] private CircleCollider2D areaDetecting;
+    //[SerializeField] private CircleCollider2D areaAttack;
+
+    //[SerializeField] private EnemyTriggers enemyTriggers;
 
 
     private bool isDie;
@@ -16,12 +18,20 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
     public void Awake()
     {
         base.Inicialization(gobliData);
+        //enemyTriggers = GetComponent<EnemyTriggers>();
     }
 
-    private void Start()
-    {
-        EnemyTriggers.PlayerDetected += OnPlayerDetected;
-    }
+    //private void Start()
+    //{
+    //    enemyTriggers.PlayerDetected += OnPlayerDetected;
+    //    enemyTriggers.EnemyStartAttack += OnEnemyAttack;
+    //}
+
+    //private void OnDestroy()
+    //{
+    //    enemyTriggers.PlayerDetected -= OnPlayerDetected;
+    //    enemyTriggers.EnemyStartAttack -= OnEnemyAttack;
+    //}
 
     void Update()
     {
@@ -38,6 +48,18 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
         else 
         {
             print("Я ПЕРЕДУМАЛ!");
+        }
+    }
+
+    public void OnEnemyAttack(bool canAttack)
+    {
+        if (canAttack==true)
+        {
+            print("Я ТЕБЯ ЖОСКО БЬЮ");
+        }
+        else
+        {
+            print("Я НЕ БЬЮ ТЕБЯ");
         }
     }
 

@@ -140,6 +140,7 @@ GameObject:
   - component: {fileID: 8841002546162750898}
   - component: {fileID: 8360240766225774885}
   - component: {fileID: 4972253179971327931}
+  - component: {fileID: 5791605229382465731}
   m_Layer: 8
   m_Name: Goblin
   m_TagString: Enemy
@@ -289,8 +290,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gobliData: {fileID: 11400000, guid: c499fb429febc824b9cfe5eb01480925, type: 2}
   changeRepel: 0
-  areaDetecting: {fileID: 0}
-  areaAttack: {fileID: 0}
+  areaDetecting: {fileID: 1740167841244421105}
+  areaAttack: {fileID: 8141726023656300690}
+  enemyTriggers: {fileID: 0}
 --- !u!50 &4972253179971327931
 Rigidbody2D:
   serializedVersion: 5
@@ -318,6 +320,21 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &5791605229382465731
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5183794163979722016}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53758df1a4e5bb40ba183434cdc3396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAIAdvanced
+  detectionRange: 5
+  attackRange: 1.5
+  moveSpeed: 3
 --- !u!1 &6883350280703200281
 GameObject:
   m_ObjectHideFlags: 0
