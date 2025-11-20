@@ -63,5 +63,4 @@ public class PlayerProcessor : MonoBehaviour
         playerData.MaxPlayerHealth += AddHpMax;
         playerData.PlayerHealth += AddHpMax;
     }
-
 }

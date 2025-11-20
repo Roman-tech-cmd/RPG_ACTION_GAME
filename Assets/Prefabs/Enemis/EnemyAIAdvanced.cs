@@ -56,6 +56,20 @@ public class EnemyAIAdvanced : BaseEnemy
                 break;
 
             case EnemyState.Attacking:
+
+                float rotationSpeed = 5;
+                if (player != null)
+                {
+                    Vector2 direction = (Vector2)player.position - (Vector2)transform.position;
+                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
+                    Quaternion targetRotation = Quaternion.AngleAxis(angle-90, Vector3.forward);
+                    transform.rotation = Quaternion.Slerp(
+                        transform.rotation,
+                        targetRotation,
+                        rotationSpeed * Time.deltaTime
+                    );
+                }
                 if (distanceToPlayer > attackRange)
                 {
                     currentState = EnemyState.Chasing;
@@ -80,7 +94,7 @@ public class EnemyAIAdvanced : BaseEnemy
     private void AttackPlayer()
     {
         // Останавливаемся для атаки
-        // Реализуйте логику атаки здесь
+        PlayerProcessor.Instant.TakeDamage(damageEnemy);
         Debug.Log("Атакую игрока!");
     }
 

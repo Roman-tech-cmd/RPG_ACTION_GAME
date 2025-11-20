@@ -9,7 +9,7 @@ public class PlayerData : MonoBehaviour
     [SerializeField] protected float maxPlayerProtection;
     [SerializeField] protected float playerXPtoLVL;
 
-    protected float playerHealth;
+    [SerializeField] protected float playerHealth;
     protected float playerMana;
     protected float playerProtection;
     protected int playerLVL;

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class BaseEnemy : MonoBehaviour
 {
     protected string nameEnemy;
-    protected int damageEnemy;
+    [SerializeField] protected int damageEnemy;
     protected int MaxHealth;
     protected float health;
     protected LootItem[] itemDrop;

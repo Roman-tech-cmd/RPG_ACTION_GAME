@@ -15,7 +15,7 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
 
     private bool isDie;
 
-    public void Awake()
+    public void Start()
     {
         base.Inicialization(gobliData);
         //enemyTriggers = GetComponent<EnemyTriggers>();
