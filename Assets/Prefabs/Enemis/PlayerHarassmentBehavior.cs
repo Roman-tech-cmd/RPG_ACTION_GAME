@@ -1,7 +1,8 @@
-using UnityEngine;
 using Pathfinding;
-public class EnemyAIAdvanced : BaseEnemy
+using UnityEngine;
+public class PlayerHarassmentBehavior : MonoBehaviour
 {
+    BaseEnemy baseEnemy;
     [Header("Настройки дистанций")]
     [SerializeField] private float detectionRange = 5f;
     [SerializeField] private float attackRange = 1.5f;
@@ -14,6 +15,11 @@ public class EnemyAIAdvanced : BaseEnemy
         Idle,
         Chasing,
         Attacking
+    }
+
+    private void Awake()
+    {
+        baseEnemy = GetComponent<BaseEnemy>();
     }
 
     private void Start()
@@ -33,8 +39,8 @@ public class EnemyAIAdvanced : BaseEnemy
             case EnemyState.Idle:
                 if (distanceToPlayer <= detectionRange)
                 {
-                    print(Physics2D.LinecastAll(transform.position, player.position,LayerMask.NameToLayer("Barrier")).Length);
-                    if (Physics2D.LinecastAll(transform.position,player.position).Length==0)
+                    LayerMask barrierMask = 1 << LayerMask.NameToLayer("Barrier");
+                    if (Physics2D.Raycast(transform.position, player.position - transform.position,detectionRange, barrierMask) ==false)
                     {
 
                         currentState = EnemyState.Chasing;
@@ -46,8 +52,7 @@ public class EnemyAIAdvanced : BaseEnemy
 
             case EnemyState.Chasing:
                 if (distanceToPlayer <= attackRange)
-                {
-                    
+                {  
                     currentState = EnemyState.Attacking;
                     Debug.Log("Игрок в зоне атаки!");
                 }
@@ -63,20 +68,7 @@ public class EnemyAIAdvanced : BaseEnemy
                 break;
 
             case EnemyState.Attacking:
-
-                float rotationSpeed = 5;
-                if (player != null)
-                {
-                    Vector2 direction = (Vector2)player.position - (Vector2)transform.position;
-                    float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
-
-                    Quaternion targetRotation = Quaternion.AngleAxis(angle-90, Vector3.forward);
-                    transform.rotation = Quaternion.Slerp(
-                        transform.rotation,
-                        targetRotation,
-                        rotationSpeed * Time.deltaTime
-                    );
-                }
+                RotateToPlayer();
                 if (distanceToPlayer > attackRange)
                 {
                     currentState = EnemyState.Chasing;
@@ -84,26 +76,33 @@ public class EnemyAIAdvanced : BaseEnemy
                 }
                 else
                 {
-                    AttackPlayer();
+                    baseEnemy.EnemyAttack();
                 }
                 break;
         }
     }
 
-    private void ChasePlayer()
+    public void RotateToPlayer()
     {
-        //Vector2 direction = (player.position - transform.position).normalized;
-        //transform.Translate(direction * moveSpeed * Time.deltaTime);
+        float rotationSpeed = 5;
+        if (player != null)
+        {
+            Vector2 direction = (Vector2)player.position - (Vector2)transform.position;
+            float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
-        GetComponent<IAstarAI>().destination = player.transform.position;
-        GetComponent<IAstarAI>().maxSpeed = moveSpeed;
+            Quaternion targetRotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+            transform.rotation = Quaternion.Slerp(
+                transform.rotation,
+                targetRotation,
+                rotationSpeed * Time.deltaTime
+            );
+        }
     }
 
-    private void AttackPlayer()
+    private void ChasePlayer()
     {
-        // Останавливаемся для атаки
-        PlayerProcessor.Instant.TakeDamage(damageEnemy);
-        Debug.Log("Атакую игрока!");
+        GetComponent<IAstarAI>().maxSpeed = baseEnemy.MoveSpeed;
+        GetComponent<IAstarAI>().destination = player.transform.position;        
     }
 
     // Визуализация зон в редакторе

@@ -24,6 +24,7 @@ public class PlayerProcessor : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L)) RestoreMana(3, false);
         if (Input.GetKeyDown(KeyCode.N)) RestoreHp(0, true);
         if (Input.GetKeyDown(KeyCode.M)) RestoreMana(5, true);
+        if (Input.GetKeyDown(KeyCode.L)) TakeDamage(5);
     }
 
     public void TakeDamage(float damage)
