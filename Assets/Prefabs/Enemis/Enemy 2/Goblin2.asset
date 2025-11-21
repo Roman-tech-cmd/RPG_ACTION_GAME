@@ -16,6 +16,7 @@ MonoBehaviour:
   Damage: 3
   MaxHealth: 50
   MoveSpeed: 3
+  SpeedAttack: 1
   ItemDrop:
   - {fileID: -3236220387907203556, guid: fd61421f2d0d0c741baac0495f7c2bb5, type: 3}
   - {fileID: -3236220387907203556, guid: 6776c88138ddbed42b82e89e35a77986, type: 3}

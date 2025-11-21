@@ -1,33 +1,58 @@
-using System;
-using TMPro;
 using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
+    [SerializeField] protected EnemyData gobliData;
     protected string nameEnemy;
-    [SerializeField] protected int damageEnemy;
+    protected int damageEnemy;
     protected int MaxHealth;
     protected float health;
     protected LootItem[] itemDrop;
-    [SerializeField] protected float moveSpeed;
+    protected float moveSpeed;
+    
 
-    public virtual void Inicialization(EnemyData data)
+    [Header("Настройки атаки")]
+    protected float speedAttack;
+    protected float lastAttackTime = 0f;
+    protected bool canAttack = true;
+
+    public float MoveSpeed
     {
-        MaxHealth = data.MaxHealth;
+        get { return moveSpeed; }
+    }
+    protected bool isDie;
+    protected bool canTakeDebaff = true;
+
+    public virtual void Inicialization()
+    {
+        MaxHealth = gobliData.MaxHealth;
         health = MaxHealth;
-        nameEnemy = data.Name;
-        damageEnemy = data.Damage;
-        itemDrop = data.ItemDrop;
-        moveSpeed = data.MoveSpeed;
+        nameEnemy = gobliData.Name;
+        damageEnemy = gobliData.Damage;
+        itemDrop = gobliData.ItemDrop;
+        moveSpeed = gobliData.MoveSpeed;
+        speedAttack = gobliData.SpeedAttack;
+    }
+
+    public virtual void Awake()
+    {
+        Inicialization();
     }
 
     void Start()
     {
+        //Inicialization(gobliData);
         gameObject.name = nameEnemy;
+    }
+
+    private void Update()
+    {
+        if (isDie) canTakeDebaff = false;
     }
 
     public virtual void Die()
     {
+        isDie = true;
         Debug.Log(nameEnemy + " умер.");
         DropItem();
         Destroy(gameObject);
@@ -36,11 +61,35 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         //Debug.Log(nameEnemy + " ходит.");
     }
-
     public virtual void EnemyAttack()
     {
-        Debug.Log(nameEnemy + " наносит " + damageEnemy + " урона.");
+        if (!canAttack) return;
+
+        Debug.Log(nameEnemy + " атакует!");
         PlayerProcessor.Instant.TakeDamage(damageEnemy);
+
+        // Запускаем кулдаун
+        StartCooldown();
+    }
+
+    protected virtual void StartCooldown()
+    {
+        canAttack = false;
+        lastAttackTime = Time.time;
+    }
+
+    protected virtual void UpdateCooldown()
+    {
+        if (!canAttack && Time.time >= lastAttackTime + speedAttack)
+        {
+            canAttack = true;
+        }
+    }
+
+    public virtual void ResetAttackCooldown()
+    {
+        lastAttackTime = 0f;
+        canAttack = true;
     }
 
     public virtual void TakeDamage(float playerDamage, StaticItemCharacteristicClass.Element element)
@@ -90,39 +139,57 @@ public abstract class BaseEnemy : MonoBehaviour
     }
     public virtual void EnemyBurning()
     {
-        Debug.Log(nameEnemy + " горит.");
+        if (canTakeDebaff && !isDie)
+        {
+            Debug.Log(nameEnemy + " горит.");
+        }
     }
 
     public virtual void EnemyFreezing()
     {
-        Debug.Log(nameEnemy + " заморожен.");
+        if (canTakeDebaff && !isDie)
+        {
+            Debug.Log(nameEnemy + " заморожен.");
+        }
     }
 
     public virtual void EnemyBleeding()
     {
-        Debug.Log(nameEnemy + " кровоточит.");
+        if (canTakeDebaff && !isDie)
+        {
+            Debug.Log(nameEnemy + " кровоточит.");
+        }
     }
 
     public virtual void EnemyReducingProtection()
     {
-        Debug.Log(nameEnemy + " потерял немного брони.");
+        if (canTakeDebaff && !isDie)
+        {
+            Debug.Log(nameEnemy + " потерял немного брони.");
+        }
     }
 
     public virtual void EnemyDamageWithDelay()
     {
-        Debug.Log(nameEnemy + " получил второй урон.");
+        if (canTakeDebaff && !isDie)
+        {
+            Debug.Log(nameEnemy + " получил второй урон.");
+        }
     }
 
     public virtual void NoneEffect()
     {
-        Debug.Log("Нужно активировать предмет.");
+        if (canTakeDebaff && !isDie)
+        {
+            Debug.Log("Нужно активировать предмет.");
+        }
     }
 
     public void DropItem()
     {
         foreach (LootItem loot in itemDrop)
         {
-            float randomValue = UnityEngine.Random.Range(0, 100f);
+            float randomValue = Random.Range(0, 100f);
             if (randomValue <= loot.ChangeDrop)
             {
                 Instantiate(loot.PrefabLoot, transform.position, Quaternion.identity);

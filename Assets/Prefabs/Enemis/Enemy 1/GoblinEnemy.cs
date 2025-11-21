@@ -1,55 +1,21 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class GoblinEnemy : BaseEnemy, IEnemyDebaf
 {
-    [SerializeField] private EnemyData gobliData;
-    private bool canTakeDebaff = true;
     [SerializeField, Range(0, 100)] private float changeRepel;
-    private bool isDie;
 
-    public void Start()
+    public override void Awake()
     {
-        Inicialization(gobliData);
+        base.Awake();
     }
-
-    void Update()
-    {
-        if (isDie) canTakeDebaff = false;
-        Move();
-    }
-
-    public void OnPlayerDetected(bool isDetected)
-    {
-        if (isDetected)
-        {
-            print("Я БЕГУ ЗА ТОБОЙ!");
-        }
-        else 
-        {
-            print("Я ПЕРЕДУМАЛ!");
-        }
-    }
-
-    public void OnEnemyAttack(bool canAttack)
-    {
-        if (canAttack==true)
-        {
-            print("Я ТЕБЯ ЖОСКО БЬЮ");
-        }
-        else
-        {
-            print("Я НЕ БЬЮ ТЕБЯ");
-        }
-    }
-
-
 
     public override void TakeDamage(float playerDamage, StaticItemCharacteristicClass.Element element)
     {
         if (UnityEngine.Random.value > ((100 - changeRepel) / 100))
         {
-            Debug.Log(gobliData.Name + " отразил атаку.");
+            Debug.Log(nameEnemy + " отразил атаку.");
             canTakeDebaff = false;
             return;
         }
@@ -62,55 +28,13 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
 
     public override void Die()
     {
-        isDie = true;
-        Debug.Log(gobliData.Name + " идзаёт визг.");
+        Debug.Log(nameEnemy + " идзаёт визг.");
         base.Die();
     }
 
-    public override void EnemyBurning()
+    public override void EnemyAttack()
     {
-        if (canTakeDebaff && !isDie)
-        {
-            base.EnemyBurning();
-        }
-    }
-
-    public override void EnemyFreezing()
-    {
-        if (canTakeDebaff && !isDie)
-        {
-            base.EnemyFreezing();
-        }
-    }
-
-    public override void EnemyBleeding()
-    {
-        if (canTakeDebaff && !isDie)
-        {
-            base.EnemyBleeding();
-        }
-    }
-
-    public override void EnemyReducingProtection()
-    {
-        if (canTakeDebaff && !isDie)
-        {
-            base.EnemyReducingProtection();
-        }
-    }
-
-    public override void EnemyDamageWithDelay()
-    {
-        if (canTakeDebaff && !isDie)
-        {
-            base.EnemyDamageWithDelay();
-        }
-    }
-
-
-    public override void Move()
-    {
-        base.Move();
-
+        base.UpdateCooldown();
+        base.EnemyAttack();
     }
 }
