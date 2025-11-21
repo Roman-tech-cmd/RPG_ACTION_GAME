@@ -1,15 +1,15 @@
-using UnityEngine;
+using System;
 using TMPro;
+using UnityEngine;
 
 public abstract class BaseEnemy : MonoBehaviour
 {
-    private string nameEnemy;
-    private int damageEnemy;
-    private int MaxHealth;
-    private float health;
-    private LootItem[] itemDrop;
-
-    private TextMeshProUGUI consoleTXT;
+    protected string nameEnemy;
+    [SerializeField] protected int damageEnemy;
+    protected int MaxHealth;
+    protected float health;
+    protected LootItem[] itemDrop;
+    [SerializeField] protected float moveSpeed;
 
     public virtual void Inicialization(EnemyData data)
     {
@@ -18,12 +18,12 @@ public abstract class BaseEnemy : MonoBehaviour
         nameEnemy = data.Name;
         damageEnemy = data.Damage;
         itemDrop = data.ItemDrop;
+        moveSpeed = data.MoveSpeed;
     }
 
     void Start()
     {
         gameObject.name = nameEnemy;
-        consoleTXT = GameObject.FindGameObjectWithTag("Log").GetComponent<TextMeshProUGUI>();
     }
 
     public virtual void Die()
@@ -34,7 +34,7 @@ public abstract class BaseEnemy : MonoBehaviour
     }
     public virtual void Move()
     {
-        Debug.Log(nameEnemy + " ходит.");
+        //Debug.Log(nameEnemy + " ходит.");
     }
 
     public virtual void EnemyAttack()
@@ -56,31 +56,31 @@ public abstract class BaseEnemy : MonoBehaviour
         switch (element)
         {
             case StaticItemCharacteristicClass.Element.None:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и Нужно активировать предмет");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и Нужно активировать предмет");
                 NoneEffect();
                 break;
             case StaticItemCharacteristicClass.Element.Fire:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
                 EnemyBurning();
                 break;
 
             case StaticItemCharacteristicClass.Element.Frost:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и заморожен.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и заморожен.");
                 EnemyFreezing();
                 break;
 
             case StaticItemCharacteristicClass.Element.Wind:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и кровоточит.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и кровоточит.");
                 EnemyBleeding();
                 break;
 
             case StaticItemCharacteristicClass.Element.Water:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и потерял немного брони.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и потерял немного брони.");
                 EnemyReducingProtection();
                 break;
 
             case StaticItemCharacteristicClass.Element.Earth:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
                 EnemyDamageWithDelay();
                 break;
         }
@@ -121,7 +121,7 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         foreach (LootItem loot in itemDrop)
         {
-            float randomValue = Random.Range(0, 100f);
+            float randomValue = UnityEngine.Random.Range(0, 100f);
             if (randomValue <= loot.ChangeDrop)
             {
                 Instantiate(loot.PrefabLoot, transform.position, Quaternion.identity);
