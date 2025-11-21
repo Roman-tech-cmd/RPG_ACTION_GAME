@@ -1,6 +1,6 @@
-using UnityEngine;
 using Pathfinding;
-public class EnemyAIAdvanced : BaseEnemy
+using UnityEngine;
+public class EnemyAIAdvanced : MonoBehaviour
 {
     [Header("Настройки дистанций")]
     [SerializeField] private float detectionRange = 5f;
@@ -33,8 +33,8 @@ public class EnemyAIAdvanced : BaseEnemy
             case EnemyState.Idle:
                 if (distanceToPlayer <= detectionRange)
                 {
-                    print(Physics2D.LinecastAll(transform.position, player.position,LayerMask.NameToLayer("Barrier")).Length);
-                    if (Physics2D.LinecastAll(transform.position,player.position).Length==0)
+                    LayerMask barrierMask = 1 << LayerMask.NameToLayer("Barrier");
+                    if (Physics2D.Raycast(transform.position, player.position - transform.position,detectionRange, barrierMask) ==false)
                     {
 
                         currentState = EnemyState.Chasing;
@@ -46,8 +46,7 @@ public class EnemyAIAdvanced : BaseEnemy
 
             case EnemyState.Chasing:
                 if (distanceToPlayer <= attackRange)
-                {
-                    
+                {  
                     currentState = EnemyState.Attacking;
                     Debug.Log("Игрок в зоне атаки!");
                 }
@@ -63,7 +62,6 @@ public class EnemyAIAdvanced : BaseEnemy
                 break;
 
             case EnemyState.Attacking:
-
                 float rotationSpeed = 5;
                 if (player != null)
                 {
@@ -84,7 +82,7 @@ public class EnemyAIAdvanced : BaseEnemy
                 }
                 else
                 {
-                    AttackPlayer();
+                    //EnemyAttack();
                 }
                 break;
         }
@@ -92,18 +90,8 @@ public class EnemyAIAdvanced : BaseEnemy
 
     private void ChasePlayer()
     {
-        //Vector2 direction = (player.position - transform.position).normalized;
-        //transform.Translate(direction * moveSpeed * Time.deltaTime);
-
         GetComponent<IAstarAI>().destination = player.transform.position;
-        GetComponent<IAstarAI>().maxSpeed = moveSpeed;
-    }
-
-    private void AttackPlayer()
-    {
-        // Останавливаемся для атаки
-        PlayerProcessor.Instant.TakeDamage(damageEnemy);
-        Debug.Log("Атакую игрока!");
+       // GetComponent<IAstarAI>().maxSpeed = moveSpeed;
     }
 
     // Визуализация зон в редакторе

@@ -40,6 +40,7 @@ public abstract class BaseEnemy : MonoBehaviour
     public virtual void EnemyAttack()
     {
         Debug.Log(nameEnemy + " наносит " + damageEnemy + " урона.");
+        PlayerProcessor.Instant.TakeDamage(damageEnemy);
     }
 
     public virtual void TakeDamage(float playerDamage, StaticItemCharacteristicClass.Element element)

@@ -6,32 +6,12 @@ public class GoblinEnemy : BaseEnemy, IEnemyDebaf
     [SerializeField] private EnemyData gobliData;
     private bool canTakeDebaff = true;
     [SerializeField, Range(0, 100)] private float changeRepel;
-
-    //[SerializeField] private CircleCollider2D areaDetecting;
-    //[SerializeField] private CircleCollider2D areaAttack;
-
-    //[SerializeField] private EnemyTriggers enemyTriggers;
-
-
     private bool isDie;
 
     public void Start()
     {
-        base.Inicialization(gobliData);
-        //enemyTriggers = GetComponent<EnemyTriggers>();
+        Inicialization(gobliData);
     }
-
-    //private void Start()
-    //{
-    //    enemyTriggers.PlayerDetected += OnPlayerDetected;
-    //    enemyTriggers.EnemyStartAttack += OnEnemyAttack;
-    //}
-
-    //private void OnDestroy()
-    //{
-    //    enemyTriggers.PlayerDetected -= OnPlayerDetected;
-    //    enemyTriggers.EnemyStartAttack -= OnEnemyAttack;
-    //}
 
     void Update()
     {
