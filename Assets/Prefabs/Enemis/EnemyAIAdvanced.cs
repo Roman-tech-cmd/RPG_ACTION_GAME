@@ -33,14 +33,21 @@ public class EnemyAIAdvanced : BaseEnemy
             case EnemyState.Idle:
                 if (distanceToPlayer <= detectionRange)
                 {
-                    currentState = EnemyState.Chasing;
-                    Debug.Log("Обнаружил игрока! Начинаю преследование");
+                    print(Physics2D.LinecastAll(transform.position, player.position,LayerMask.NameToLayer("Barrier")).Length);
+                    if (Physics2D.LinecastAll(transform.position,player.position).Length==0)
+                    {
+
+                        currentState = EnemyState.Chasing;
+                        Debug.Log("Обнаружил игрока! Начинаю преследование");
+                    }
+                    
                 }
                 break;
 
             case EnemyState.Chasing:
                 if (distanceToPlayer <= attackRange)
                 {
+                    
                     currentState = EnemyState.Attacking;
                     Debug.Log("Игрок в зоне атаки!");
                 }
@@ -89,6 +96,7 @@ public class EnemyAIAdvanced : BaseEnemy
         //transform.Translate(direction * moveSpeed * Time.deltaTime);
 
         GetComponent<IAstarAI>().destination = player.transform.position;
+        GetComponent<IAstarAI>().maxSpeed = moveSpeed;
     }
 
     private void AttackPlayer()

@@ -11,8 +11,6 @@ public abstract class BaseEnemy : MonoBehaviour
     protected LootItem[] itemDrop;
     [SerializeField] protected float moveSpeed;
 
-    protected TextMeshProUGUI consoleTXT;
-
     public virtual void Inicialization(EnemyData data)
     {
         MaxHealth = data.MaxHealth;
@@ -26,7 +24,6 @@ public abstract class BaseEnemy : MonoBehaviour
     void Start()
     {
         gameObject.name = nameEnemy;
-        consoleTXT = GameObject.FindGameObjectWithTag("Log").GetComponent<TextMeshProUGUI>();
     }
 
     public virtual void Die()
@@ -59,31 +56,31 @@ public abstract class BaseEnemy : MonoBehaviour
         switch (element)
         {
             case StaticItemCharacteristicClass.Element.None:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и Нужно активировать предмет");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и Нужно активировать предмет");
                 NoneEffect();
                 break;
             case StaticItemCharacteristicClass.Element.Fire:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
                 EnemyBurning();
                 break;
 
             case StaticItemCharacteristicClass.Element.Frost:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и заморожен.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и заморожен.");
                 EnemyFreezing();
                 break;
 
             case StaticItemCharacteristicClass.Element.Wind:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и кровоточит.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и кровоточит.");
                 EnemyBleeding();
                 break;
 
             case StaticItemCharacteristicClass.Element.Water:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и потерял немного брони.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и потерял немного брони.");
                 EnemyReducingProtection();
                 break;
 
             case StaticItemCharacteristicClass.Element.Earth:
-                consoleTXT.SetText(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
+                print(nameEnemy + " получил " + playerDamage + " ед. урона и горит.");
                 EnemyDamageWithDelay();
                 break;
         }
