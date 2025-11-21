@@ -1,6 +1,6 @@
 using Pathfinding;
 using UnityEngine;
-public class EnemyAIAdvanced : MonoBehaviour
+public class PlayerHarassmentBehavior : MonoBehaviour
 {
     BaseEnemy baseEnemy;
     [Header("Настройки дистанций")]

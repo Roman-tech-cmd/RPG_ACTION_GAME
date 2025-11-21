@@ -189,7 +189,7 @@ public abstract class BaseEnemy : MonoBehaviour
     {
         foreach (LootItem loot in itemDrop)
         {
-            float randomValue = Random.Range(0, 100f);
+            float randomValue = Random.Range(0, 100);
             if (randomValue <= loot.ChangeDrop)
             {
                 Instantiate(loot.PrefabLoot, transform.position, Quaternion.identity);

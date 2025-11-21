@@ -12,13 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3353d926e1788004c88625bf67b11cc6, type: 3}
   m_Name: Goblin1
   m_EditorClassIdentifier: 
-  Name: "\u041E\u0431\u044B\u0447\u043D\u044B\u0439 \u0433\u043E\u0431\u043B\u0438\u043D"
+  Name: "\u041A\u0440\u0443\u0442\u043E\u0439 \u0433\u043E\u0431\u043B\u0438\u043D"
   Damage: 10
-  MaxHealth: 70
-  MoveSpeed: 2
+  MaxHealth: 50
+  MoveSpeed: 3
+  SpeedAttack: 1
   ItemDrop:
-  - {fileID: -7145498234628675550, guid: 78be2735bd40c0a4482f83083b208a13, type: 3}
-  - {fileID: -3236220387907203556, guid: 6776c88138ddbed42b82e89e35a77986, type: 3}
   - {fileID: -3236220387907203556, guid: fd61421f2d0d0c741baac0495f7c2bb5, type: 3}
-  - {fileID: -3236220387907203556, guid: b69e893a0a1aef347933276c88f71a34, type: 3}
+  - {fileID: -3236220387907203556, guid: 6776c88138ddbed42b82e89e35a77986, type: 3}
   - {fileID: -3236220387907203556, guid: 23adefa5e69f17547af5c9ffdef930c8, type: 3}
+  - {fileID: 8523841504529978774, guid: 3e66a1deedf9a434db9b67b3f943004a, type: 3}
+  - {fileID: 8523841504529978774, guid: 8a81c9c204fc7be4592f74167cad9876, type: 3}
+  - {fileID: -7145498234628675550, guid: 78be2735bd40c0a4482f83083b208a13, type: 3}
